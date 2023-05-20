@@ -3,31 +3,33 @@ playRound();
 function playRound() {
     const computerChoice = getComputerChoice();
     const userChoice = getUserChoice();
-    let message;
-    let winner;
+    let winner = checkWinner(userChoice, computerChoice);
+    let message = 
+        winner === "user" ? `You Won! ${userChoice} beats ${computerChoice}` :
+        winner === "computer" ? `You Lose! ${computerChoice} beats ${userChoice}` :
+        `Draw ${userChoice} is equal ${computerChoice}`
+    
+    alert(message);
+    console.log(winner);
+    return winner;
+}
 
+function checkWinner(userChoice, computerChoice) {
     if (
         (userChoice === "rock" && computerChoice === "scissors") ||
         (userChoice === "paper" && computerChoice === "rock") ||
         (userChoice === "scissors" && computerChoice === "paper")   
     ) {
-        message = `You Won! ${userChoice} beats ${computerChoice}`;
-        winner = "user";
+        return "user";
     } else if (
         (userChoice === "rock" && computerChoice === "paper") ||
         (userChoice === "paper" && computerChoice === "scissors") ||
         (userChoice === "scissors" && computerChoice === "rock")
     ) {
-        message = `You Lose! ${computerChoice} beats ${userChoice}`;
-        winner = "computer";
+        return "computer";
     } else {
-        message = `Draw ${userChoice} is equal ${computerChoice}`;
-        winner = "Draw";
+        return "Draw";
     }
-
-    alert(message);
-    console.log(winner);
-    return winner;
 }
 
 function getUserChoice() {
