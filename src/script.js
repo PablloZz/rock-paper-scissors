@@ -21,11 +21,11 @@ function getComputerChoice() {
     let computerChoice;
 
     if (randomNum === 1) {
-        computerChoice = "Rock";
+        computerChoice = "rock";
     } else if (randomNum === 2) {
-        computerChoice = "Paper";
+        computerChoice = "paper";
     } else {
-        computerChoice = "Scissors";
+        computerChoice = "scissors";
     }
 
     return computerChoice;
