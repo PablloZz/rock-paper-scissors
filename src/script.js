@@ -1,4 +1,31 @@
-playRound();
+game()
+
+function game() {
+    let userScore = 0;
+    let computerScore = 0;
+    let winner;
+    let runNewRound = true;
+    while (runNewRound) {
+        let roundWinner = playRound();
+        switch (roundWinner) {
+            case "user":
+                userScore++;
+            break;
+            case "computer":
+                computerScore++;
+            break;
+        }
+        runNewRound = userScore < 5 && computerScore < 5;
+    }
+
+    if (userScore === 5) {
+        winner = "User";
+    } else {
+        winner = "Computer";
+    }
+
+    return winner;
+}
 
 function playRound() {
     const computerChoice = getComputerChoice();
@@ -10,7 +37,6 @@ function playRound() {
         `Draw ${userChoice} is equal ${computerChoice}`
     
     alert(message);
-    console.log(winner);
     return winner;
 }
 
@@ -83,8 +109,13 @@ function getComputerChoice() {
         create condition which check who won and assign values to message and winner,
         show message,
         output the winner variable;
-    write a compareResults() function which check the who win and give its result;
-    write a countScore() function which count the score and set game over;
+    write a game() function which runs game while one side won't get 5 scores:
+        create userScore variable to hold user score,
+        create computerScore variable to hold computer score,
+        create variable winner,
+        create variable runNewRound to iterate while it is true,
+        iterate while one of those variables don't reach 5,
+        assign to winner variable current winner;
     write a gameOver() function;
     write a newGame() function;
 */
