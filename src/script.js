@@ -26,9 +26,18 @@ function game(event) {
 
     if (userScore === 5) {
         result.textContent = "You won!";
+        endGame();
     } else if (computerScore === 5) {
         result.textContent = "You lose!";
+        endGame();
     }
+}
+
+function endGame() {
+    gameOptions.forEach(option => {
+        option.disabled;
+        option.removeEventListener("click", game);
+    });
 }
 
 function playRound(userChoice) {
