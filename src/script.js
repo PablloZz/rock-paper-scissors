@@ -1,5 +1,5 @@
 const gameOptions = document.querySelectorAll("button");
-const result = document.querySelector("#results");
+const result = document.querySelector("h1");
 const userScoreMessage = document.querySelector("#user-score");
 const computerScoreMessage = document.querySelector("#computer-score");
 let userScore = 0;
@@ -10,21 +10,24 @@ gameOptions.forEach(option => {
 });
 
 function game(event) {
-    const userChoice = event.target.getAttribute("data-option");
+    event.stopPropagation();
+    gameOptions.forEach(option => option.style.background = "");
+    const userChoice = event.currentTarget.getAttribute("data-option");
+    event.currentTarget.style.background = "#999";
     let roundWinner = playRound(userChoice);
 
     if (roundWinner === "user") {
         userScore++;
         userScoreMessage.textContent = `User score - ${userScore}`;
-    } else {
+    } else if (roundWinner === "computer") {
         computerScore++;
         computerScoreMessage.textContent = `Computer score - ${computerScore}`;
     }
 
     if (userScore === 5) {
-        alert("You won!");
+        result.textContent = "You won!";
     } else if (computerScore === 5) {
-        alert("You lose!");
+        result.textContent = "You lose!";
     }
 }
 

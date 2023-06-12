@@ -3,14 +3,27 @@
 <head>
     <meta charset="utf-8">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-    <div id="results"></div>
-    <div id="user-score">Your score - 0</div>
-    <div id="computer-score">Computer score - 0</div>
-    <button data-option="rock">Rock</button>
-    <button data-option="paper">Paper</button>
-    <button data-option="scissors">Scissors</button>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="button-container">
+            <button data-option="rock">
+                <img src="./src/images/rock.png" alt="rock" width="512" height="512">
+            </button>
+            <button data-option="paper">
+                <img src="./src/images/paper.png" alt="paper" width="512" height="512">
+            </button>
+            <button data-option="scissors">
+                <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
+            </button>
+        </div>
+        <div class="results-container">
+            <div id="user-score" class="score">Your score - 0</div>
+            <div id="computer-score" class="score">Computer score - 0</div>
+        </div>
+    </div>
     <script src="./src/script.js"></script>
 </body>
 </html>
