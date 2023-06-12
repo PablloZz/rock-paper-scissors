@@ -1,4 +1,5 @@
 const gameOptions = document.querySelectorAll("button");
+const computerOptions = document.querySelectorAll("button[class^='computer'");
 const result = document.querySelector("h1");
 const userScoreMessage = document.querySelector("#user-score");
 const computerScoreMessage = document.querySelector("#computer-score");
@@ -42,6 +43,14 @@ function endGame() {
 
 function playRound(userChoice) {
     const computerChoice = getComputerChoice();
+    computerOptions.forEach(option => {
+        option.style.background = "";
+
+        if (option.classList[0].split("-")[1] === computerChoice) {
+            option.style.background = "#999";
+        }
+    });
+
     let winner = checkWinner(userChoice, computerChoice);
     let message = 
         winner === "user" ? `You Won! ${userChoice} beats ${computerChoice}` :

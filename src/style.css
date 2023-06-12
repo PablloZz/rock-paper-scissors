@@ -9,6 +9,7 @@
     box-sizing: border-box;
 }
 
+/* || GENERAL STYLES */
 body {
     padding-top: 150px;
     background: lightblue;
@@ -31,6 +32,22 @@ button:active {
     transform: scale(1);
 }
 
+button {
+    background: #bbb;
+    transition: .5s ease;
+    width: 30%;
+    height: 250px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -41,21 +58,10 @@ button:active {
     width: 800px;
 }
 
-.button-container {
+.buttons-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
-
-button {
-    background: #bbb;
-    transition: .5s ease;
-    width: 30%;
-    height: 250px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
 }
 
 .results-container {
