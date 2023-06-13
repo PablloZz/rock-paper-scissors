@@ -1,4 +1,4 @@
-const gameOptions = document.querySelectorAll("button");
+const userOptions = document.querySelectorAll(".user-option");
 const computerOptions = document.querySelectorAll("button[class^='computer'");
 const result = document.querySelector("h1");
 const userScoreMessage = document.querySelector("#user-score");
@@ -6,13 +6,13 @@ const computerScoreMessage = document.querySelector("#computer-score");
 let userScore = 0;
 let computerScore = 0;
 
-gameOptions.forEach(option => {
+userOptions.forEach(option => {
     option.addEventListener("click", game);
 });
 
 function game(event) {
     event.stopPropagation();
-    gameOptions.forEach(option => option.style.background = "");
+    userOptions.forEach(option => option.style.background = "");
     const userChoice = event.currentTarget.getAttribute("data-option");
     event.currentTarget.style.background = "#999";
     let roundWinner = playRound(userChoice);
@@ -35,10 +35,31 @@ function game(event) {
 }
 
 function endGame() {
-    gameOptions.forEach(option => {
+    userOptions.forEach(option => {
         option.disabled;
         option.removeEventListener("click", game);
     });
+    const overlay = document.querySelector("#overlay");
+    overlay.classList.add("overlay");
+    const newGameButton = document.createElement("button");
+    document.body.appendChild(newGameButton);
+    newGameButton.textContent = "New Game";
+    newGameButton.classList.add("new-game");
+    newGameButton.addEventListener("click", startNewGame);
+}
+
+function startNewGame() {
+    const overlay = document.querySelector("#overlay");
+    const newGameButton = document.querySelector(".new-game");
+    overlay.classList.remove("overlay");
+    newGameButton.parentElement.removeChild(newGameButton);
+    userOptions.forEach(option => option.style.background = "");
+    computerOptions.forEach(option => option.style.background = "");
+    userScore = 0;
+    computerScore = 0;
+    userScoreMessage.textContent = `User score - ${userScore}`;
+    computerScoreMessage.textContent = `Computer score - ${computerScore}`;
+    result.textContent = "Rock Paper Scissors";
 }
 
 function playRound(userChoice) {
