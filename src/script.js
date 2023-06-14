@@ -6,13 +6,11 @@ const computerScoreMessage = document.querySelector("#computer-score");
 let userScore = 0;
 let computerScore = 0;
 
-userOptions.forEach(option => {
-    option.addEventListener("click", game);
-});
+addUserClickEvent();
 
 function game(event) {
     event.stopPropagation();
-    userOptions.forEach(option => option.style.background = "");
+    removeOptionsBackground(userOptions);
     const userChoice = event.currentTarget.getAttribute("data-option");
     event.currentTarget.style.background = "#999";
     let roundWinner = playRound(userChoice);
@@ -53,13 +51,24 @@ function startNewGame() {
     const newGameButton = document.querySelector(".new-game");
     overlay.classList.remove("overlay");
     newGameButton.parentElement.removeChild(newGameButton);
-    userOptions.forEach(option => option.style.background = "");
-    computerOptions.forEach(option => option.style.background = "");
+    removeOptionsBackground(userOptions);
+    removeOptionsBackground(computerOptions);
     userScore = 0;
     computerScore = 0;
     userScoreMessage.textContent = `User score - ${userScore}`;
     computerScoreMessage.textContent = `Computer score - ${computerScore}`;
     result.textContent = "Rock Paper Scissors";
+    addUserClickEvent();
+}
+
+function addUserClickEvent() {
+    userOptions.forEach(option => {
+        option.addEventListener("click", game);
+    });
+}
+
+function removeOptionsBackground(options) {
+    options.forEach(option => option.style.background = "");
 }
 
 function playRound(userChoice) {
@@ -76,7 +85,7 @@ function playRound(userChoice) {
     let message = 
         winner === "user" ? `You Won! ${userChoice} beats ${computerChoice}` :
         winner === "computer" ? `You Lose! ${computerChoice} beats ${userChoice}` :
-        `Draw ${userChoice} is equal ${computerChoice}`
+        `Draw ${userChoice} is equal ${computerChoice}`;
     
     result.textContent = message;
     return winner;
