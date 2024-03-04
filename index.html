@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="utf-8">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./src/style.css">
-</head>
-<body>
+  </head>
+
+  <body>
     <div id="overlay"></div>
     <div class="container">
-        <h1>Rock Paper Scissors</h1>
-        <div>
-            <h2>Your choice:</h2>
-            <div class="buttons-container">
-                <button data-option="rock" class="user-option">
-                    <img src="./src/images/rock.png" alt="rock" width="512" height="512">
-                </button>
-                <button data-option="paper" class="user-option">
-                    <img src="./src/images/paper.png" alt="paper" width="512" height="512">
-                </button>
-                <button data-option="scissors" class="user-option">
-                    <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
-                </button>
-            </div>
+      <h1>Rock Paper Scissors</h1>
+      <div>
+        <h2>Your choice:</h2>
+        <div class="buttons-container">
+          <button data-option="rock" class="user-option">
+            <img src="./src/images/rock.png" alt="rock" width="512" height="512">
+          </button>
+          <button data-option="paper" class="user-option">
+            <img src="./src/images/paper.png" alt="paper" width="512" height="512">
+          </button>
+          <button data-option="scissors" class="user-option">
+            <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
+          </button>
         </div>
-        <div>
-            <h2>Computer choice:</h2>
-            <div class="buttons-container">
-                <button class="computer-rock">
-                    <img src="./src/images/rock.png" alt="rock" width="512" height="512">
-                </button>
-                <button class="computer-paper">
-                    <img src="./src/images/paper.png" alt="paper" width="512" height="512">
-                </button>
-                <button class="computer-scissors">
-                    <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
-                </button>
-            </div>
+      </div>
+      <div>
+        <h2>Computer choice:</h2>
+        <div class="buttons-container">
+          <button class="computer-rock">
+            <img src="./src/images/rock.png" alt="rock" width="512" height="512">
+          </button>
+          <button class="computer-paper">
+            <img src="./src/images/paper.png" alt="paper" width="512" height="512">
+          </button>
+          <button class="computer-scissors">
+            <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
+          </button>
         </div>
-        <div class="results-container">
-            <div id="user-score" class="score">Your score - 0</div>
-            <div id="computer-score" class="score">Computer score - 0</div>
-        </div>
+      </div>
+      <div class="results-container">
+        <div id="user-score" class="score">Your score - 0</div>
+        <div id="computer-score" class="score">Computer score - 0</div>
+      </div>
     </div>
     <script src="./src/script.js"></script>
-</body>
+  </body>
+
 </html>
