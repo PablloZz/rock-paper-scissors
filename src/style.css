@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Roboto:wght@400;500;700;900&display=swap');
 
-/* || RESET */
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +8,15 @@
   box-sizing: border-box;
 }
 
-/* || GENERAL STYLES */
 body {
-  padding-top: 150px;
-  background: hsl(195deg 53% 79%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Libre Franklin', sans-serif;
+  background: hsl(195deg 53% 79%);
+  padding: 40px;
 }
 
 img {
@@ -22,29 +25,20 @@ img {
   height: auto;
 }
 
-button:hover {
-  background: hsl(0deg 0% 67%);
-  transform: scale(1.05);
-}
-
-button:active {
-  background: hsl(0deg 0% 73%);
-  transform: scale(1);
-}
-
 button {
-  background: hsl(0deg 0% 73%);
+  cursor: pointer;
   transition: .2s ease;
-  width: 30%;
-  height: 250px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
 }
 
 h2 {
-  text-align: center;
   margin-bottom: 10px;
 }
 
@@ -54,26 +48,45 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: hsl(0deg 0% 20% / 50%);
+  background: hsl(0deg 0% 20% / 50%);
 }
 
-.container {
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  margin: auto;
   width: 800px;
 }
 
-.buttons-container {
+.choices {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.results-container {
+.choice {
+  background: hsl(0deg 0% 73%);
+  width: 30%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+button.choice:hover {
+  background: hsl(0deg 0% 67%);
+  transform: scale(1.05);
+}
+
+button.choice:active {
+  background: hsl(0deg 0% 73%);
+  transform: scale(1);
+}
+
+.results {
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -91,8 +104,7 @@ h2 {
   width: 200px;
   height: 100px;
   padding: 8px 16px;
-  cursor: pointer;
-  background-color: hsl(20 86% 81%);
+  background: hsl(20 86% 81%);
   border: hsl(30deg 36% 31%);
   font-size: 24px;
   font-weight: bold;
@@ -102,7 +114,13 @@ h2 {
 }
 
 .new-game:hover {
+  background: hsl(0deg 0% 67%);
   transform: translateX(-50%) scale(1.05);
+}
+
+.new-game:active {
+  background: hsl(0deg 0% 67%);
+  transform: translateX(-50%) scale(1);
 }
 
 @keyframes newGame {

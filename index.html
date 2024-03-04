@@ -9,41 +9,43 @@
 
   <body>
     <div id="overlay"></div>
-    <div class="container">
+    <header>
       <h1>Rock Paper Scissors</h1>
-      <div>
+    </header>
+    <main class="main">
+      <section>
         <h2>Your choice:</h2>
-        <div class="buttons-container">
-          <button data-option="rock" class="user-option">
+        <div class="choices">
+          <button data-option="rock" class="user-option choice">
             <img src="./src/images/rock.png" alt="rock" width="512" height="512">
           </button>
-          <button data-option="paper" class="user-option">
+          <button data-option="paper" class="user-option choice">
             <img src="./src/images/paper.png" alt="paper" width="512" height="512">
           </button>
-          <button data-option="scissors" class="user-option">
+          <button data-option="scissors" class="user-option choice">
             <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
           </button>
         </div>
-      </div>
-      <div>
+      </section>
+      <section>
         <h2>Computer choice:</h2>
-        <div class="buttons-container">
-          <button class="computer-rock">
+        <div class="choices">
+          <div class="computer-rock choice">
             <img src="./src/images/rock.png" alt="rock" width="512" height="512">
-          </button>
-          <button class="computer-paper">
+          </div>
+          <div class="computer-paper choice">
             <img src="./src/images/paper.png" alt="paper" width="512" height="512">
-          </button>
-          <button class="computer-scissors">
+          </div>
+          <div class="computer-scissors choice">
             <img src="./src/images/scissors.png" alt="scissors" width="512" height="512">
-          </button>
+          </div>
         </div>
-      </div>
-      <div class="results-container">
+      </section>
+      <div class="results">
         <div id="user-score" class="score">Your score - 0</div>
         <div id="computer-score" class="score">Computer score - 0</div>
       </div>
-    </div>
+    </main>
     <script src="./src/script.js"></script>
   </body>
 
