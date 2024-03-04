@@ -12,7 +12,7 @@
 /* || GENERAL STYLES */
 body {
   padding-top: 150px;
-  background: lightblue;
+  background: hsl(195deg 53% 79%);
   font-family: 'Libre Franklin', sans-serif;
 }
 
@@ -23,17 +23,17 @@ img {
 }
 
 button:hover {
-  background: #aaa;
+  background: hsl(0deg 0% 67%);
   transform: scale(1.05);
 }
 
 button:active {
-  background: #bbb;
+  background: hsl(0deg 0% 73%);
   transform: scale(1);
 }
 
 button {
-  background: #bbb;
+  background: hsl(0deg 0% 73%);
   transition: .2s ease;
   width: 30%;
   height: 250px;
@@ -46,6 +46,15 @@ button {
 h2 {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(0deg 0% 20% / 50%);
 }
 
 .container {
@@ -75,7 +84,6 @@ h2 {
   font-weight: bold;
 }
 
-/* New Game Button */
 .new-game {
   position: absolute;
   top: 50%;
@@ -84,8 +92,8 @@ h2 {
   height: 100px;
   padding: 8px 16px;
   cursor: pointer;
-  background-color: hsl(20, 86%, 81%);
-  border: hsl(30, 36%, 31%);
+  background-color: hsl(20 86% 81%);
+  border: hsl(30deg 36% 31%);
   font-size: 24px;
   font-weight: bold;
   transform: translateX(-50%);
@@ -118,13 +126,4 @@ h2 {
     top: 50%;
     left: 50%;
   }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(51, 51, 51, .5);
 }
