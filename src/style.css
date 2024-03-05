@@ -14,20 +14,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Libre Franklin', Arial, sans-serif;
   background: hsl(195deg 53% 79%);
   padding: 40px;
 }
 
-img {
-  display: block;
-  width: 75%;
-  height: auto;
-}
-
 button {
   cursor: pointer;
-  transition: .2s ease;
 }
 
 h1, h2 {
@@ -54,26 +47,30 @@ h2 {
 .main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 30px;
-  width: 800px;
+  max-width: 800px;
 }
 
 .choices {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
 }
 
 .choice {
-  background: hsl(0deg 0% 73%);
-  width: 30%;
-  height: 250px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 0.9;
+  background: hsl(0deg 0% 73%);
+  border-radius: 5px;
   user-select: none;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.choice-image {
+  width: 75%;
+  height: auto;
 }
 
 button.choice:hover {
@@ -87,9 +84,9 @@ button.choice:active {
 }
 
 .results {
-  width: 100%;
   display: flex;
   justify-content: space-around;
+  gap: 15px;
 }
 
 .score {
@@ -105,9 +102,10 @@ button.choice:active {
   height: 100px;
   padding: 8px 16px;
   background: hsl(20 86% 81%);
-  border: hsl(30deg 36% 31%);
+  border-radius: 5px;
   font-size: 24px;
   font-weight: bold;
+  transition: background .2s ease, transform .2s ease;
   transform: translateX(-50%);
   animation: newGame 1s linear 0s 1;
   z-index: 100;
@@ -119,7 +117,7 @@ button.choice:active {
 }
 
 .new-game:active {
-  background: hsl(0deg 0% 67%);
+  background: hsl(0deg 0% 73%);
   transform: translateX(-50%) scale(1);
 }
 
