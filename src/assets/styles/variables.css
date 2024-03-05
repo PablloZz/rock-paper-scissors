@@ -1,0 +1,8 @@
+:root {
+  /* Colors */
+  --dark-gray-50: hsl(0deg 0% 20% / 50%);
+  --light-gray: hsl(0deg 0% 67%);
+  --silver: hsl(0deg 0% 73%);
+  --peach: hsl(20 86% 81%);
+  --lightblue: hsl(195, 53%, 79%);
+}
