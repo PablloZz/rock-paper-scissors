@@ -1,5 +1,6 @@
 :root {
   /* Colors */
+  --dark-gray: hsl(0deg 0% 60%);
   --dark-gray-50: hsl(0deg 0% 20% / 50%);
   --light-gray: hsl(0deg 0% 67%);
   --silver: hsl(0deg 0% 73%);

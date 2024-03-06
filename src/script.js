@@ -1,35 +1,61 @@
-const userOptions = document.querySelectorAll(".user-option");
-const computerOptions = document.querySelectorAll("button[class^='computer'");
+import { 
+  CHOICES_COUNT,
+  INCREMENT,
+} from "./libs/constants/constants.js";
+import { Choice, Winner, Score } from "./libs/enums/enums.js";
+
+const overlay = document.querySelector("#overlay");
+const userOptions = document.querySelectorAll("button.option");
+const computerOptions = document.querySelectorAll("div.option");
 const result = document.querySelector("h1");
 const userScoreMessage = document.querySelector("#user-score");
 const computerScoreMessage = document.querySelector("#computer-score");
-let userScore = 0;
-let computerScore = 0;
+let userScore = Score.INITIAL;
+let computerScore = Score.INITIAL;
 
-addUserClickEvent();
+initUserOptionClick();
 
 function game(event) {
   event.stopPropagation();
-  removeOptionsBackground(userOptions);
+  removeChoiceClasses(userOptions);
   const userChoice = event.currentTarget.getAttribute("data-option");
-  event.currentTarget.style.background = "#999";
-  let roundWinner = playRound(userChoice);
+  const computerChoice = getComputerChoice();
+  event.currentTarget.classList.add("choice");
+  const roundWinner = playRound(userChoice, computerChoice);
+  updateScore(roundWinner);
 
-  if (roundWinner === "user") {
-    userScore++;
-    userScoreMessage.textContent = `User score - ${userScore}`;
-  } else if (roundWinner === "computer") {
-    computerScore++;
-    computerScoreMessage.textContent = `Computer score - ${computerScore}`;
-  }
-
-  if (userScore === 5) {
+  if (userScore === Score.MAX) {
     result.textContent = "You won!";
     endGame();
-  } else if (computerScore === 5) {
+  } else if (computerScore === Score.MAX) {
     result.textContent = "You lose!";
     endGame();
   }
+}
+
+function updateScore(roundWinner) {
+  if (roundWinner === Winner.USER) {
+    userScore++;
+    userScoreMessage.textContent = `User score - ${userScore}`;
+  } else if (roundWinner === Winner.COMPUTER) {
+    computerScore++;
+    computerScoreMessage.textContent = `Computer score - ${computerScore}`;
+  }
+}
+
+function getComputerChoice() {
+  const randomNum = Math.floor(Math.random() * CHOICES_COUNT) + INCREMENT;
+  let computerChoice;
+
+  if (randomNum === 1) {
+    computerChoice = Choice.ROCK;
+  } else if (randomNum === 2) {
+    computerChoice = Choice.PAPER;
+  } else {
+    computerChoice = Choice.SCISSORS;
+  }
+
+  return computerChoice;
 }
 
 function endGame() {
@@ -37,89 +63,80 @@ function endGame() {
     option.disabled;
     option.removeEventListener("click", game);
   });
-  const overlay = document.querySelector("#overlay");
   overlay.classList.add("overlay");
   const newGameButton = document.createElement("button");
-  document.body.appendChild(newGameButton);
   newGameButton.textContent = "New Game";
   newGameButton.classList.add("new-game");
   newGameButton.addEventListener("click", startNewGame);
+  document.body.appendChild(newGameButton);
 }
 
 function startNewGame() {
-  const overlay = document.querySelector("#overlay");
   const newGameButton = document.querySelector(".new-game");
   overlay.classList.remove("overlay");
   newGameButton.parentElement.removeChild(newGameButton);
-  removeOptionsBackground(userOptions);
-  removeOptionsBackground(computerOptions);
-  userScore = 0;
-  computerScore = 0;
+  removeChoiceClasses(userOptions);
+  removeChoiceClasses(computerOptions);
+  userScore = Score.INITIAL;
+  computerScore = Score.INITIAL;
   userScoreMessage.textContent = `User score - ${userScore}`;
   computerScoreMessage.textContent = `Computer score - ${computerScore}`;
   result.textContent = "Rock Paper Scissors";
-  addUserClickEvent();
+  initUserOptionClick();
 }
 
-function addUserClickEvent() {
+function initUserOptionClick() {
   userOptions.forEach(option => {
     option.addEventListener("click", game);
   });
 }
 
-function removeOptionsBackground(options) {
-  options.forEach(option => option.style.background = "");
+function removeChoiceClasses(options) {
+  options.forEach(option => option.classList.remove("choice"));
 }
 
-function playRound(userChoice) {
-  const computerChoice = getComputerChoice();
-  computerOptions.forEach(option => {
-    option.style.background = "";
-
-    if (option.classList[0].split("-")[1] === computerChoice) {
-      option.style.background = "#999";
-    }
-  });
-
-  let winner = checkWinner(userChoice, computerChoice);
-  let message = 
-    winner === "user" ? `You Won! ${userChoice} beats ${computerChoice}` :
-    winner === "computer" ? `You Lose! ${computerChoice} beats ${userChoice}` :
-    `Draw ${userChoice} is equal ${computerChoice}`;
+function playRound(userChoice, computerChoice) {
+  setComputerChoiceClasses(computerChoice);
+  const winner = getWinner(userChoice, computerChoice);
+  const message = getWinnerMessage(winner, userChoice, computerChoice);
   
   result.textContent = message;
   return winner;
 }
 
-function checkWinner(userChoice, computerChoice) {
-  if (
-    (userChoice === "rock" && computerChoice === "scissors") ||
-    (userChoice === "paper" && computerChoice === "rock") ||
-    (userChoice === "scissors" && computerChoice === "paper")   
-  ) {
-    return "user";
-  } else if (
-    (userChoice === "rock" && computerChoice === "paper") ||
-    (userChoice === "paper" && computerChoice === "scissors") ||
-    (userChoice === "scissors" && computerChoice === "rock")
-  ) {
-    return "computer";
-  } else {
-    return "draw";
-  }
+function getWinnerMessage(winner, userChoice, computerChoice) {
+  return (
+    (winner === Winner.USER) ? `You Won! ${userChoice} beats ${computerChoice}` :
+    (winner === Winner.COMPUTER) ? `You Lose! ${computerChoice} beats ${userChoice}` :
+    `Draw ${userChoice} is equal ${computerChoice}`
+  );
 }
 
-function getComputerChoice() {
-  const randomNum = Math.floor(Math.random() * 3) + 1;
-  let computerChoice;
+function setComputerChoiceClasses(computerChoice) {
+  computerOptions.forEach(option => {
+    option.classList.remove("choice");
 
-  if (randomNum === 1) {
-    computerChoice = "rock";
-  } else if (randomNum === 2) {
-    computerChoice = "paper";
+    const optionValue = option.getAttribute("data-option");
+    if (optionValue === computerChoice) {
+      option.classList.add("choice");
+    }
+  });
+}
+
+function getWinner(userChoice, computerChoice) {
+  if (
+    (userChoice === Choice.ROCK && computerChoice === Choice.SCISSORS) ||
+    (userChoice === Choice.PAPER && computerChoice === Choice.ROCK) ||
+    (userChoice === Choice.SCISSORS && computerChoice === Choice.PAPER)
+  ) {
+    return Winner.USER;
+  } else if (
+    (userChoice === Choice.ROCK && computerChoice === Choice.PAPER) ||
+    (userChoice === Choice.PAPER && computerChoice === Choice.SCISSORS) ||
+    (userChoice === Choice.SCISSORS && computerChoice === Choice.ROCK)
+  ) {
+    return Winner.COMPUTER;
   } else {
-    computerChoice = "scissors";
+    return Winner.DRAW;
   }
-
-  return computerChoice;
 }
