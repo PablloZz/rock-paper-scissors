@@ -1,7 +1,4 @@
-import { 
-  CHOICES_COUNT,
-  INCREMENT,
-} from "./libs/constants/constants.js";
+import { CHOICES_COUNT } from "./libs/constants/constants.js";
 import { Choice, Winner, Score } from "./libs/enums/enums.js";
 
 const overlay = document.querySelector("#overlay");
@@ -44,12 +41,12 @@ function updateScore(roundWinner) {
 }
 
 function getComputerChoice() {
-  const randomNum = Math.floor(Math.random() * CHOICES_COUNT) + INCREMENT;
+  const randomNum = Math.floor(Math.random() * CHOICES_COUNT);
   let computerChoice;
 
-  if (randomNum === 1) {
+  if (randomNum === 0) {
     computerChoice = Choice.ROCK;
-  } else if (randomNum === 2) {
+  } else if (randomNum === 1) {
     computerChoice = Choice.PAPER;
   } else {
     computerChoice = Choice.SCISSORS;
