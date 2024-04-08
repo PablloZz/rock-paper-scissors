@@ -15,7 +15,7 @@ initUserOptionClick();
 function game(event) {
   event.stopPropagation();
   removeChoiceClasses(userOptions);
-  const { currentTarget: target } = event.currentTarget;
+  const { currentTarget: target } = event;
   const userChoice = target.getAttribute("data-option");
   const computerChoice = getComputerChoice();
   target.classList.add("choice");
