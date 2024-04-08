@@ -15,9 +15,10 @@ initUserOptionClick();
 function game(event) {
   event.stopPropagation();
   removeChoiceClasses(userOptions);
-  const userChoice = event.currentTarget.getAttribute("data-option");
+  const { currentTarget: target } = event.currentTarget;
+  const userChoice = target.getAttribute("data-option");
   const computerChoice = getComputerChoice();
-  event.currentTarget.classList.add("choice");
+  target.classList.add("choice");
   const roundWinner = playRound(userChoice, computerChoice);
   updateScore(roundWinner);
 
@@ -56,7 +57,7 @@ function getComputerChoice() {
 }
 
 function endGame() {
-  userOptions.forEach(option => {
+  userOptions.forEach((option) => {
     option.disabled;
     option.removeEventListener("click", game);
   });
@@ -83,34 +84,34 @@ function startNewGame() {
 }
 
 function initUserOptionClick() {
-  userOptions.forEach(option => {
+  userOptions.forEach((option) => {
     option.addEventListener("click", game);
   });
 }
 
 function removeChoiceClasses(options) {
-  options.forEach(option => option.classList.remove("choice"));
+  options.forEach((option) => option.classList.remove("choice"));
 }
 
 function playRound(userChoice, computerChoice) {
   setComputerChoiceClasses(computerChoice);
   const winner = getWinner(userChoice, computerChoice);
   const message = getWinnerMessage(winner, userChoice, computerChoice);
-  
+
   result.textContent = message;
   return winner;
 }
 
 function getWinnerMessage(winner, userChoice, computerChoice) {
-  return (
-    (winner === Winner.USER) ? `You Won! ${userChoice} beats ${computerChoice}` :
-    (winner === Winner.COMPUTER) ? `You Lose! ${computerChoice} beats ${userChoice}` :
-    `Draw ${userChoice} is equal ${computerChoice}`
-  );
+  return winner === Winner.USER
+    ? `You Won! ${userChoice} beats ${computerChoice}`
+    : winner === Winner.COMPUTER
+    ? `You Lose! ${computerChoice} beats ${userChoice}`
+    : `Draw ${userChoice} is equal ${computerChoice}`;
 }
 
 function setComputerChoiceClasses(computerChoice) {
-  computerOptions.forEach(option => {
+  computerOptions.forEach((option) => {
     option.classList.remove("choice");
 
     const optionValue = option.getAttribute("data-option");
